@@ -40,7 +40,7 @@ namespace StockAnalyzer.WebApi.Controllers
 
             foreach (var performance in performanceComparisonResult.StockPerformances)
             {
-                var spyPerformance = performanceComparisonResult.ComparedStockPerformances.Single(x => x.Date.DayOfWeek == performance.Date.DayOfWeek);
+                var spyPerformance = performanceComparisonResult.ComparedStockPerformances.Single(x => x.Date == performance.Date);
                 var performanceItem = new GetSpyPerformanceComparisonResponseItem
                 {
                     Date = performance.Date.ToString("d", CultureInfo.InvariantCulture),

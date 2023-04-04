@@ -10,5 +10,11 @@ namespace StockAnalyzer.Infrastructure.Context
             Database.Migrate();
         }
         public DbSet<StockPrice> StockPricies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StockPrice>()
+                .HasIndex(p => new { p.Symbol, p.Date }).IsUnique();
+        }
     }
 }

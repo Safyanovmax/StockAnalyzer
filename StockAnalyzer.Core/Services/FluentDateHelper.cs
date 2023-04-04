@@ -8,7 +8,7 @@ namespace StockAnalyzer.Core.Services
     {
         public DateTime GetWeekStartDate()
         {
-            var lastWeekDate = 2.Weeks().Ago().Date;
+            var lastWeekDate = 1.Weeks().Ago().Date;
             var startDate = lastWeekDate.Previous(DayOfWeek.Monday);
             return startDate;
         }

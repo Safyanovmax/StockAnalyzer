@@ -18,7 +18,7 @@ namespace StockAnalyzer.Infrastructure.Services
 
         public async Task<List<StockPrice>> GetPeriodPrices(string symbol, DateTime startDate, DateTime endDate)
         {
-            var stockPrices = await _context.StockPricies.Where(x => x.Date >= startDate && x.Date <= endDate && x.Symbol == symbol).ToListAsync();
+            var stockPrices = await _context.StockPricies.Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date && x.Symbol == symbol).ToListAsync();
             return stockPrices;
         }
 
