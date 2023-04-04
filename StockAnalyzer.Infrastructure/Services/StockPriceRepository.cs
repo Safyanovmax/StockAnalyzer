@@ -24,8 +24,17 @@ namespace StockAnalyzer.Infrastructure.Services
 
         public async Task AddRange(List<StockPrice> prices)
         {
-            _context.AddRange(prices);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.AddRange(prices);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && ex.InnerException.Message.Contains("IX_StockPricies_Symbol_Date"))
+                    throw new Exception("StockPrices table cannot contains duplicate prices for same date and symbol");
+                throw;
+            }
         }
     }
 }
